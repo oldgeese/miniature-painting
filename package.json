@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@vivliostyle/cli": "next",
-    "@vivliostyle/theme-bunko": "^0.3.0",
     "vivliostyle-theme-dnd-5e-phb": "^0.1.0"
   },
   "license": "CC-BY-3.0",
