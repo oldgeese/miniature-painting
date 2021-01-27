@@ -5,12 +5,16 @@
   "author": "oldgeese <hiro.onoda@gmail.com>",
   "scripts": {
     "build": "vivliostyle build",
-    "preview": "vivliostyle preview"
+    "preview": "vivliostyle preview",
+    "release": "release-it"
   },
   "dependencies": {
     "@vivliostyle/cli": "next",
     "vivliostyle-theme-dnd-5e-phb": "^0.1.0"
   },
   "license": "CC-BY-3.0",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "release-it": "^14.2.2"
+  }
 }
