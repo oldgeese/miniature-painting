@@ -1,0 +1,41 @@
+# 参考にしたサイト： https://devblog.thebase.in/entry/automatic-release-on-github-actions
+
+name: build and release pdf
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build_and_release:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 15.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 15.x
+    - name: Install dependencies
+      run: yarn install
+    - name: Build pdf
+      run: yarn build
+    - name: Set releaser settings
+      run: |
+        git config --global user.name release-machine
+        git config --global user.email email@example.com
+    - name: Major release
+      id: major
+      if: contains(toJSON(github.event.commits.*.message), 'bump up version major')
+      run:  yarn release major --ci
+    - name: Minor release
+      id: minor
+      # メジャーバージョンアップをしていないときマイナーバージョンアップを行なうか
+      if: steps.major.conclusion == 'skipped'  && contains(toJSON(github.event.commits.*.message), 'bump up version minor')
+      run:  yarn release minor --ci
+    - name: Patch release
+      # コミットメッセージに特に指定がない場合はマイナーバージョンを更新する
+      if: "!(steps.major.conclusion == 'success' || steps.minor.conclusion == 'success')"
+      run:  yarn release patch --ci
