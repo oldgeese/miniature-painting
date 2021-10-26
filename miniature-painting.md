@@ -11,7 +11,7 @@ Welcome to the world of miniature painting! ミニチュア・ペインティン
 
 まずは道具(とか)を用意しないと始めることすらできません。
 
-:::classTable
+<div class="classTable">
 
 | 用意するもの |
 |--- |
@@ -24,7 +24,7 @@ Welcome to the world of miniature painting! ミニチュア・ペインティン
 | 塗料(ペイント)  |
 | アンダーコートスプレー |
 
-:::
+</div>
 
 ### あなたのキャラクターに対する愛
 
